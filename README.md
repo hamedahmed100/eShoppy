@@ -1,11 +1,11 @@
 # eShoppy
 
-**eShoppy** is a modern, microservices-based e-commerce application. It provides essential e-commerce functionalities including **Ordering**, **Checkout**, **Catalog**, and **Basket**. This project is built using a wide range of architectural patterns, principles, libraries, and best practices to ensure high scalability, maintainability, and performance.
+**eShoppy** is a modern, microservices-based e-commerce application. It provides essential e-commerce functionalities including **Ordering**, **Discount**, **Catalog**, and **Basket**. This project is built using a wide range of architectural patterns, principles, libraries, and best practices to ensure high scalability, maintainability, and performance.
 
 ## Key Features
 
 - **Ordering**: Manage customer orders, including order creation, validation, and processing.
-- **Checkout**: Handle payment processing and order finalization.
+- **Discount**: Apply various discount strategies and promotional codes to orders.
 - **Catalog**: Maintain a comprehensive product catalog with details, categories, and pricing.
 - **Basket**: Provide a shopping cart for customers to manage selected products before checkout.
 
