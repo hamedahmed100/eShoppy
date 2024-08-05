@@ -1,7 +1,3 @@
-To help you create a README file for your e-commerce application named **eShoppy**, I'll craft a template that incorporates the technologies and patterns shown in the image. Here's a sample README that you can adjust according to your project details:
-
----
-
 # eShoppy
 
 **eShoppy** is a modern, microservices-based e-commerce application. It provides essential e-commerce functionalities including **Ordering**, **Checkout**, **Catalog**, and **Basket**. This project is built using a wide range of architectural patterns, principles, libraries, and best practices to ensure high scalability, maintainability, and performance.
