@@ -1,12 +1,23 @@
+using BuildingBlocks.Behaviors;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// Carter is a library for mapping the objects
 builder.Services.AddCarter();
+
+// MeidatR is library that help us to implement CQRS design pattern
 builder.Services.AddMediatR(
     config =>
     {
         config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+        config.AddOpenBehavior(typeof(BuildingBlocks.Behaviors.ValidationBehavior<,>));
     });
+
+// This is for fluent validation
+builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+
+// Marten is a library for converting Postgres from regular db to documentDb
 builder.Services.AddMarten(
         opts =>
         {
