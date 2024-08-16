@@ -10,7 +10,8 @@ builder.Services.AddMediatR(
     config =>
     {
         config.RegisterServicesFromAssembly(typeof(Program).Assembly);
-        config.AddOpenBehavior(typeof(BuildingBlocks.Behaviors.ValidationBehavior<,>));
+        config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+        config.AddOpenBehavior(typeof(LoggingBehavior<,>));
     });
 
 // This is for fluent validation
