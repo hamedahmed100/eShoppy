@@ -18,14 +18,17 @@ builder.Services.AddMediatR(
 builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
 // Marten is a library for converting Postgres from regular db to documentDb
-builder.Services.AddMarten(
-        opts =>
-        {
-            opts.Connection(builder.Configuration.GetConnectionString("Database")!);
+builder.Services.AddMarten(opts =>
+{
+    opts.Connection(builder.Configuration.GetConnectionString("Database")!);
 
-        }
-        ).UseLightweightSessions();
+}).UseLightweightSessions();
 
+// Seeding the data 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+}
 
 // Add exception handler from buildingblocks
 
