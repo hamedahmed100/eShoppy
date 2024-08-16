@@ -1,4 +1,3 @@
-using BuildingBlocks.Behaviors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,10 +26,14 @@ builder.Services.AddMarten(
         ).UseLightweightSessions();
 
 
+// Add exception handler from buildingblocks
+
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipline.
 app.MapCarter();
-
+app.UseExceptionHandler(options => { });
 
 app.Run();
