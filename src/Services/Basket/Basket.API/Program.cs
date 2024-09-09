@@ -1,5 +1,6 @@
 using BuildingBlocks.Behaviors;
 using BuildingBlocks.Exceptions.Handler;
+using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
@@ -10,8 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Carter is a library for mapping the objects for correct routing
 // Carter-part-1
 builder.Services.AddCarter();
-
-
 // MeidatR is library that help us to implement CQRS design pattern
 builder.Services.AddMediatR(
     config =>
@@ -22,6 +21,7 @@ builder.Services.AddMediatR(
     });
 
 
+// Data services
 // Marten is a library for converting Postgres from regular db to documentDb
 builder.Services.AddMarten(opts =>
 {
@@ -39,6 +39,25 @@ builder.Services.AddStackExchangeRedisCache(options =>
     //options.InstanceName = "Basket";
 });
 
+
+// Grpc services
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback =
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+
+    return handler;
+});
+
+
+
+// cross-cutting services
 // Adding Exception handler
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
